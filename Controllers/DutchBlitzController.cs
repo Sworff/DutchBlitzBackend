@@ -16,7 +16,7 @@ namespace DutchBlitzBackend.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public String Get()
         {
-            return "Multi";
+            return "Multi2";
         }
     }
 }
