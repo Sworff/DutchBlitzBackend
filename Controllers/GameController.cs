@@ -53,9 +53,9 @@ namespace DutchBlitzBackend.Controllers
         {
             if (!Games.TryGetValue(gameId, out GameData? game)) 
                 return NotFound("Game not found");
-            var player = game.Players.First(p => p.Id == playerId);
+            var player = game.Players.FirstOrDefault(p => p.Id == playerId);
             if (player == null)
-                return NotFound("Player not found ");
+                return NotFound("Player not found");
             game.Players.Remove(player);
             if (game.Players.Count == 0)
                 Games.TryRemove(gameId, out _); 
