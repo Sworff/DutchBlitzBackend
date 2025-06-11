@@ -1,5 +1,7 @@
 using DutchBlitzBackend.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DutchBlitzBackend.Controllers
 {
@@ -16,12 +18,25 @@ namespace DutchBlitzBackend.Controllers
         }
 
         [HttpPost]
-        [Route("api/addPlayer")]
-        public IActionResult AddPlayer(Player player)
+        [Route("api/createGame")]
+        public IActionResult CreateGame()
         {
-            if (player == null)
-                return BadRequest("A player must be provided");
+            try
+            {
+                // createGame
 
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("api/addPlayer")]
+        public IActionResult AddPlayer()
+        {
             try
             {
                 // addPlayer
@@ -57,16 +72,16 @@ namespace DutchBlitzBackend.Controllers
         }
 
         [HttpDelete]
-        [Route("api/removePlayer")]
-        public IActionResult RemovePlayer(string id) {
-            if (string.IsNullOrEmpty(id))
+        [Route("api/removePlayer/{playerId}")]
+        public IActionResult RemovePlayer(string playerId) {
+            if (string.IsNullOrEmpty(playerId))
                 return BadRequest(errorMessage);
 
             try
             {
                 // removePlayer
 
-                return Ok();
+                return Ok("12345");
             }
             catch (Exception ex)
             {
